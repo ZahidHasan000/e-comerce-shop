@@ -5,7 +5,8 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 const http = require('http');
-dotenv.config({ path: './config.env' });
+// dotenv.config({ path: './config.env' });
+require('dotenv').config();
 const stripe = require('stripe')(process.env.STRIPE_SECRET);
 // require('./connection')
 const server = http.createServer(app);
@@ -43,7 +44,7 @@ app.use('/images', imageRoutes);
 //     })
 //     .then(() => console.log('DB connection successful!'));
 
-const DB = process.env.DATABASE;
+const DB = process.env.MONGODB_URI;
 mongoose
     .connect(DB, {
         useNewUrlParser: true,
