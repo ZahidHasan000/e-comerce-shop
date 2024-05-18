@@ -40,6 +40,9 @@ app.use('/images', imageRoutes);
 //Serving static files
 app.use(express.static(path.join(__dirname, '/e-comerce-frontend/build')));
 
+//render e-comerce-frontend for any path
+app.get('*', (req, res) => res.sendFile(path.join(__dirname, '/e-comerce-frontend/build/index.html')))
+
 const DB = process.env.MONGODB_URI;
 mongoose
     .connect(DB, {
