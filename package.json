@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
+    "build": "npm install --prefix ./e-comerce-frontend && npm run build --prefix ./e-comerce-frontend && npm install",
     "start:dev": "nodemon server.js",
     "start:prod": "SET NODE_ENV=production && nodemon server"
   },
