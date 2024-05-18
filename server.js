@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const dotenv = require('dotenv');
+// const dotenv = require('dotenv');
 
 const express = require('express');
 const cors = require('cors');
@@ -8,6 +8,8 @@ const http = require('http');
 // dotenv.config({ path: './config.env' });
 require('dotenv').config();
 const stripe = require('stripe')(process.env.STRIPE_SECRET);
+
+console.log("dirname:", __dirname);
 // require('./connection')
 const server = http.createServer(app);
 
@@ -35,14 +37,8 @@ app.use('/orders', orderRoutes);
 
 app.use('/images', imageRoutes);
 
-// const DB = process.env.DATABASE.replace('<PASSWORD>', process.env.DATABASE_PASSWORD);
-
-// mongoose
-//     .connect(DB, {
-//         useNewUrlParser: true,
-//         useUnifiedTopology: true
-//     })
-//     .then(() => console.log('DB connection successful!'));
+//Serving static files
+app.use(express.static(path.join(__dirname, '/e-comerce-frontend/build')));
 
 const DB = process.env.MONGODB_URI;
 mongoose
